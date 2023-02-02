@@ -1,0 +1,53 @@
+select {
+    width: 100%;
+}
+
+.choices {
+    grid-template-columns: repeat(4, 15vw);
+}
+
+
+/* admin_users */
+.users {
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(3, 33.333%);
+    grid-auto-rows: 10em;
+    grid-gap: .5em;
+}
+
+.user-container {
+    background-color: white;
+    border: white 1px solid;
+    border-radius: 1.5em;
+    padding: 1em .5em 1em 1em;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-auto-rows: 100%;
+}
+
+.user-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.user-contact {
+    width: 100%;
+}
+
+.user-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clean-letters-link {
+    cursor: pointer;
+}
+/* end admin_users */

@@ -1,0 +1,71 @@
+{% load static %}
+<div class="snowflakes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<header id="admin_header">
+  <ul id="burger-menu">
+    {% if request.user.is_authenticated %}
+    <li class="burger-menu-item">
+      <a class="burger-item-text" href="{% url 'usertools:logout' %}">Выйти</a>
+    </li>
+    {% endif %}
+    <li class="burger-menu-item">
+      <a class="burger-item-text" href="/admin">
+        <span>Панель администратора</span>
+        <img class="burger-item-img icon" src="{% static 'letters/images/admin.png' %}">
+      </a>
+    </li>
+    {% if request.user.is_superuser %}
+    <li class="burger-menu-item">
+      <a class="burger-item-text" href="{% url 'usertools:saveexcel' %}" download="">
+        <span>Сохранить excel</span>
+        <img class="burger-item-img icon" src="{% static 'usertools/images/excel.png' %}">
+      </a>
+    </li>
+    {% endif %}
+    <li class="burger-menu-item search-button">
+      <span class="burger-item-text">Искать</span>
+      <img class="icon burger-item-img" src="{% static 'letters/images/search.png' %}" alt="gifts">
+    </li>
+  </ul>
+
+  <p class="logo-block" style="margin-top: 0">
+    <a href="{% url 'usertools:admin_letters' ordering='all' %}">
+      <img class="logo" src="{% static 'letters/images/headerlogo.png' %}" alt="logo">
+    </a>
+  </p>
+  <div class="search-container" style="display: none">
+    <div class="back-arrow">
+      <img class="icon" src="{% static 'letters/images/back-arrow.png' %}">
+    </div>
+    <input class="search-input" type="text" placeholder="Искать письмо">
+    <ul class="search-results"></ul>
+  </div>
+  <nav>
+    <a class="nav-link button-link burger-hidden" href="/admin">
+      <button class="default-button block-button">
+        <span>Панель администратора</span>
+        <img class="icon" src="{% static 'letters/images/admin.png' %}" alt="gifts">
+      </button>
+    </a>
+    {% if request.user.is_superuser %}
+    <a class="nav-link button-link burger-hidden" href="{% url 'usertools:saveexcel' %}" download="">
+      <button class="default-button block-button">
+        <span>Сохранить excel</span>
+        <img class="icon" src="{% static 'usertools/images/excel.png' %}">
+      </button>
+    </a>
+    {% endif %}
+    <a class="nav-link burger-hidden search-button">
+      <button class="block-button default-button">
+        <span class="el-text">Искать</span>
+        <img class="icon el-image" src="{% static 'letters/images/search.png' %}" alt="gifts">
+      </button>
+    </a>
+    <p><span>{{ request.user.get_full_name }}</span></p>
+    <p class="text-link burger-hidden"><a href="{% url 'usertools:logout' %}">Выйти</a></p>
+    <div id="burger-block">
+      <img src="{% static 'usertools/images/burger.png' %}">
+    </div>
+  </nav>
+</header>
+
+<script src="{% static 'letters/js/fetchSearchResult.js' %}"></script>

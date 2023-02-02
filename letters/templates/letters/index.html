@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ёлка добра</title>
+    <meta name="viewport">
+
+    <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/letters.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/hints-swiper.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/index.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="{% static 'letters/css/medias.css' %}">
+    <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
+</head>
+<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+<p class="popup-message" style="display: none"></p>
+
+<div style="
+background: url({% static 'letters/images/santa.gif' %});
+background-size: var(--santa-width);
+" id="santa"></div>
+
+<div class="page">
+    {% include 'components/user_header.html' %}
+
+    <div class="sub-header high-element block-container">
+        <p class="sub-header-el sub-header-title">Ёлка добра</p>
+        <p class="sub-header-el sub-header-text">
+            Новогодние подарки детям
+        </p>
+    </div>
+
+    <div class="desc-text-wrapper high-element block-container">
+        <div class="desc-img">
+            <img class="desc-item desc-img" src="{% static 'letters/images/letters.png' %}">
+        </div>
+        <div class="desc-img together-img">
+            <img class="desc-item together-img" src="{% static 'letters/images/together.png' %}">
+        </div>
+        <div class="desc-img">
+            <img class="desc-item desc-img" src="{% static 'letters/images/about.png' %}">
+        </div>
+        <div class="desc-item desc-text">
+            <p class="desc-inner-text">Акция инициирована волонтерами Уральской Стали при поддержке работников Общества и руководством комбината</p>
+            <p class="desc-inner-text">По вопросам акции можно написать на почту или позвонить</p>
+        </div>
+    </div>
+
+    <div class="letters high-element">
+        {% for letter in letters %}
+            <div class="letter-container">
+                <div class="letter {% if letter.gift.status == 'unselect' %}orange-card{% else %}blue-card{% endif %}">
+                    <img class="letter-el letter-img" src="{{ letter.photo.url }}" height="100" width="100">
+                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
+                    {% if letter.gift.status == 'unselect' %}
+                        <a onclick="setPopupMessage(event)" data-href="{% url 'usertools:pick_letter' pk=letter.pk %}" class="letter-el add-favorite-link">
+                            <button class="default-button inner-button">
+                                <span>Выбрать</span>
+                            </button>
+                        </a>
+                        <a
+                            class="letter-el"
+                            href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"
+                        >
+                            <button class="default-button inner-button">
+                                <span>Подобрать подарок</span>
+                            </button>
+                        </a>
+                    {% else %}
+                        <p class="letter-el">Выбарно: {{ letter.picked_by.first_name }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'components/footer.html' %}
+
+<script>
+setVisitedMessage(
+  'index-visited',
+  'Подсказка при первом заходе на страницу'
+)
+</script>
+
+<script src="{% static 'letters/js/userindex.js' %}"></script>
+<script src="{% static 'letters/js/addFavorite.js' %}"></script>
+</body>
+</html>

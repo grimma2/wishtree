@@ -1,0 +1,7 @@
+{% autoescape off %}
+Здраствуйте, {{ user.first_name }}
+
+Подтвердите регестрацию, перейдя по ссылке,
+если вы не регестрировались на сайте, проигнорируйте это сообщение
+http://{{ domain }}{% url 'usertools:do_confirm_email' uidb64=uid token=token %}
+{% endautoescape %}

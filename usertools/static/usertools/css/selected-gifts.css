@@ -1,0 +1,22 @@
+.help-text {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    margin: 0;
+    background-color: #4ac1f7;
+    justify-content: center;
+}
+
+.help-text > * {
+    margin-left: 30px;
+}
+
+.address-container {
+    background-color: #e8c824;
+    padding: .5em 1em;
+}
+
+.address-text {
+    margin: 0;
+    text-align: center;
+}

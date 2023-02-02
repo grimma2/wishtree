@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Администрирование писем | Ёлка добра</title>
+    <meta name="viewport" content>
+
+    <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/letters.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
+    <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/selects.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/admin-page.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/medias.css' %}" rel="stylesheet">
+</head>
+<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+{% include 'components/confirm_message.html' with text='Вы уверены, что хотите отчистить выбранные письма для этого пользователя?' custom_class='clean-user-letters-message' %}
+
+<div style="
+background: url({% static 'letters/images/santa.gif' %});
+background-size: var(--santa-width);
+" id="santa"></div>
+
+<div class="page">
+    {% include 'components/admin_header.html' %}
+
+    <div class="ordering-container" style="justify-content: flex-end">
+        <div class="queryset-select">
+            <div class="queryset-option queryset-unselected-option">
+                <a href="{% url 'usertools:admin_letters' ordering='all' %}">
+                    <span class="queryset-text">Письма</span>
+                </a>
+            </div>
+            <div class="queryset-option queryset-selected-option">
+                <a href="{% url 'usertools:admin_users' %}">
+                    <span class="queryset-text">Пользователи</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <p id="successGiftChange" class="popup-message" style="display: none"></p>
+
+    <div class="users high-element">
+        {% for user in users %}
+            <div class="user-container">
+                <div class="user-text-container">
+                    <span class="user-el username">{{ user.get_full_name }}</span>
+                    <p class="user-el" style="margin: 0">
+                        {% if user.phone %}
+                        <span class="user-contact">{{ user.phone }}</span>
+                        {% endif %}
+                        <span class="user-contact">{{ user.email }}</span>
+                    </p>
+                    <span class="user-el">Выбранно писем: {{ user.num_letters }}</span>
+                </div>
+                <div class="user-link">
+                    <a class="clean-letters-link" data-href="{% url 'usertools:clear_user_letters' pk=user.pk %}">
+                        <img src="{% static 'usertools/images/delete.png' %}" class="icon">
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'components/footer.html' %}
+
+<script src="{% static 'letters/js/burgerMenu.js' %}"></script>
+<script src="{% static 'letters/js/script.js' %}"></script>
+<script src="{% static 'letters/js/confirmMessage.js' %}"></script>
+<script src="{% static 'usertools/js/changeGiftState.js' %}"></script>
+<script>
+setConfirmMessage(
+  document.querySelectorAll('a.clean-letters-link'),
+  'clean-user-letters-message'
+)
+</script>
+
+</body>
+</html>

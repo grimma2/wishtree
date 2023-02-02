@@ -1,0 +1,103 @@
+{% load static %}
+<div class="snowflakes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<header id="user_header">
+  <ul id="burger-menu">
+    {% if request.user.is_authenticated %}
+    <li class="burger-menu-item">
+      <a class="burger-item-text" href="{% url 'usertools:logout' %}">Выйти</a>
+    </li>
+    {% endif %}
+    <li class="burger-menu-item">
+      <a class="burger-item-text" href="{% url 'letters:letter_list' ordering='all' %}">
+        <span>Все письма</span>
+        <img class="icon burger-item-img" src="{% static 'letters/images/letters.png' %}">
+      </a>
+    </li>
+    <li class="burger-menu-item">
+      <a class="burger-item-text" href="{% url 'usertools:user_selected' %}">
+        <span>Мои подарки</span>
+        <img class="icon burger-item-img" src="{% static 'letters/images/giftbox.png' %}">
+      </a>
+    </li>
+    <li class="burger-menu-item search-button">
+      <span class="burger-item-text">Искать</span>
+      <img class="icon burger-item-img" src="{% static 'letters/images/search.png' %}">
+    </li>
+    <li class="burger-menu-item">
+      <a class="burger-item-text" href="{% url 'usertools:favorites' %}">
+        <span>Избранное</span>
+        <img class="icon burger-item-img" src="{% static 'usertools/images/favorite.png' %}">
+      </a>
+    </li>
+  </ul>
+
+  <p class="logo-block" style="margin-top: 0">
+    <a href="{% url 'index' %}">
+      <img class="logo" src="{% static 'letters/images/headerlogo.png' %}" alt="logo">
+    </a>
+  </p>
+  <div class="search-container" style="display: none">
+    <div class="back-arrow">
+      <img src="{% static 'letters/images/back-arrow.png' %}">
+    </div>
+    <input class="search-input" type="text" placeholder="Искать письмо">
+    <ul class="search-results"></ul>
+  </div>
+  <nav>
+    <a class="nav-link burger-hidden" href="{% url 'letters:letter_list' ordering='all' %}">
+      <button class="default-button block-button">
+        <span>Все письма</span>
+        <img class="icon" src="{% static 'letters/images/letters.png' %}" alt="gifts">
+      </button>
+    </a>
+    <a class="nav-link burger-hidden" href="{% url 'usertools:user_selected' %}">
+      <button class="default-button block-button">
+        <span>Мои подарки</span>
+        <img class="icon" src="{% static 'letters/images/giftbox.png' %}" alt="gifts">
+      </button>
+    </a>
+    <a class="nav-link burger-hidden search-button">
+      <button class="block-button default-button">
+        <span class="el-text">Искать</span>
+        <img class="icon el-image" src="{% static 'letters/images/search.png' %}" alt="gifts">
+      </button>
+    </a>
+    <a class="nav-link burger-hidden" href="{% url 'usertools:favorites' %}">
+      <button class="block-button default-button">
+        <span class="el-text">Избранное</span>
+        <img class="icon el-image" src="{% static 'usertools/images/favorite.png' %}" alt="gifts">
+      </button>
+    </a>
+    {% if request.user.is_authenticated %}
+      <p class="nav-el"><span>{{ request.user.get_full_name }}</span></p>
+      <p class="nav-el burger-hidden"><a href="{% url 'usertools:logout' %}">Выйти</a></p>
+    {% else %}
+      <p class="nav-el">
+        <a href="{% url 'usertools:register' %}">Регистрация</a>
+        <a id="login-text" href="{% url 'usertools:login' %}">Вход</a>
+      </p>
+    {% endif %}
+    <div id="burger-block">
+      <img src="{% static 'usertools/images/burger.png' %}">
+    </div>
+  </nav>
+</header>
+
+<div class="helper helper-limited">
+    <div class="helper-img-container helper-el">
+        <img class="helper-img" src="{% static 'letters/images/helper.png' %}"">
+    </div>
+    <div class="info-message helper-el" style="display: none">
+        <img class="helper-x-img helper-content" src="{% static 'usertools/images/x.png' %}">
+        <span class="message-text helper-content"></span>
+    </div>
+    <div class="hints-swiper helper-el helper-content" style="display: none">
+        <div class="swiper-wrapper"></div>
+    </div>
+</div>
+
+<script src="{% static 'letters/js/script.js' %}"></script>
+<script src="{% static 'letters/js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'usertools/js/userheader.js' %}"></script>
+<script src="{% static 'letters/js/fetchSearchResult.js' %}"></script>
+<script src="{% static 'letters/js/burgerMenu.js' %}"></script>

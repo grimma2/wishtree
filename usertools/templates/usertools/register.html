@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регестрация</title>
+    <meta name="viewport">
+
+    <link href="{% static 'letters/css/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/hints-swiper.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/login.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
+    <link href="{% static 'letters/css/medias.css' %}" rel="stylesheet">
+    <style>
+      ul:not(.errorlist) {
+        display: none;
+      }
+      form p span {
+        display: none;
+      }
+    </style>
+</head>
+<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+
+<div style="
+background: url({% static 'letters/images/santa.gif' %});
+background-size: var(--santa-width);
+" id="santa"></div>
+
+  <div class="page">
+    {% include 'components/user_header.html' %}
+
+    <div class="form-wrapper">
+      <form method="post" class="login-form">
+        <div class="title-block">
+          <span class="form-title">Регестрация</span>
+          <div class="sub-text">
+            <a href="{% url 'usertools:login' %}">Вход</a>
+          </div>
+        </div>
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="default-button" type="submit">Отправить</button>
+      </form>
+    </div>
+
+  </div>
+{% include 'components/footer.html' %}
+
+<script src="{% static 'usertools/js/labelToPlaceholder.js' %}"></script>
+<script>
+for (let i of document.querySelectorAll('form > p')) {
+  if (!i.textContent) {
+    i.remove()
+  }
+}
+</script>
+</body>
+</html>

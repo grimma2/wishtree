@@ -1,0 +1,25 @@
+.high-element {
+    margin-top: 1em;
+}
+
+.high-line {
+    width: 95%;
+}
+
+.back-arrow-on-page-container {
+    cursor: pointer;
+    background-color: white;
+    padding: .5em;
+    height: 3em;
+    width: 3em;
+    border: white 1px solid;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-arrow-on-page {
+    height: 100%;
+    width: 100%;
+}

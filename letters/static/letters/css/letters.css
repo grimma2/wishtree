@@ -1,0 +1,32 @@
+.letters {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 75vh;
+}
+
+.letter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter {
+    margin: auto;
+    height: 95%;
+    width: 95%;
+    border: black 1px solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.letter-el {
+    width: 95%;
+    margin: 0;
+}
+
+.letter img {
+    margin-top: 15px;
+    height: 70%;
+}

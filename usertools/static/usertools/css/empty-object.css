@@ -1,0 +1,26 @@
+.empty-text-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-objects-text {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-objects-text p {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.empty-objects-text img {
+    height: 200px;
+    width: 200px;
+}

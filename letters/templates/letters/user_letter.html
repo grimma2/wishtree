@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр письма</title>
+    <meta name="viewport">
+
+    <link href="{% static 'letters/css/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
+    <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/letters.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/hints-swiper.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/medias.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/letter-detail.css' %}" rel="stylesheet">
+</head>
+
+<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+
+<div style="
+background: url({% static 'letters/images/santa.gif' %});
+background-size: var(--santa-width);
+" id="santa"></div>
+
+    <div class="page">
+        {% include 'components/user_header.html' %}
+
+        <div class="high-line high-element">
+            <div class="back-arrow-on-page-container" onclick="window.history.back()">
+                <img class="back-arrow-on-page" src="{% static 'letters/images/back-arrow.png' %}">
+            </div>
+        </div>
+
+        <div class="letters high-element">
+            <div class="letter-container">
+                <div class="letter {% if letter.gift.status == 'unselect' %}orange-card{% else %}blue-card{% endif %}">
+                    <img class="letter-el letter-img" src="{{ letter.photo.url }}">
+                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
+                    {% if letter.gift.status == 'unselect' %}
+                        <button class="default-button letter-el">
+                            <a href="{% url 'usertools:pick_letter' pk=letter.pk %}">Выбрать</a>
+                        </button>
+                        <a
+                            class="letter-el"
+                            href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"
+                        >
+                            <button class="default-button inner-button">
+                                <span>Подобрать подарок</span>
+                            </button>
+                        </a>
+                    {% else %}
+                        <p class="letter-el">Выбарно: {{ letter.picked_by.first_name }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'components/footer.html' %}
+</body>
+</html>

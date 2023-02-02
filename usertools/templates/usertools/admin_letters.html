@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Администрирование писем | Ёлка добра</title>
+    <meta name="viewport" content>
+
+    <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/letters.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
+    <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/selects.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/admin-page.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/medias.css' %}" rel="stylesheet">
+</head>
+<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+<p id="successGiftChange" class="popup-message" style="display: none"></p>
+
+<div style="
+background: url({% static 'letters/images/santa.gif' %});
+background-size: var(--santa-width);
+" id="santa"></div>
+
+<div class="page">
+    {% include 'components/admin_header.html' %}
+
+    <div class="ordering-container">
+        <div class="ordering">
+            <div class="ordering-banner">
+                <img class="ordering-banner-img" src="{% static 'letters/images/order.png' %}">
+                <p style="margin-left: .4em">Сортировать</p>
+            </div>
+            <select class="letter-ordering">
+                <option class="ordering-option" value="all">Все</option>
+                <option class="ordering-option" value="0">Не выбраные</option>
+                <option class="ordering-option" value="1">Выбраные</option>
+                <option class="ordering-option" value="2">Доставленые</option>
+            </select>
+        </div>
+        <div class="queryset-select">
+            <div class="queryset-option queryset-selected-option">
+                <a href="{% url 'usertools:admin_letters' ordering='all' %}">
+                    <span class="queryset-text">Письма</span>
+                </a>
+            </div>
+            <div class="queryset-option queryset-unselected-option">
+                <a href="{% url 'usertools:admin_users' %}">
+                    <span class="queryset-text">Пользователи</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="letters high-element">
+        {% for letter in letters %}
+            <div class="letter-container">
+                {% if letter.gift.status == 'unselect' %}
+                <div class="letter orange-card">
+                {% elif letter.gift.status == 'selected' %}
+                <div class="letter blue-card">
+                {% else %}
+                <div class="letter green-card">
+                {% endif %}
+                    <img class="letter-el letter-img" src="{{ letter.photo.url }}">
+                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
+                    <div class="custom-select letter-el">
+                        <select data-objectid="{{ letter.gift.pk }}" name="status-select" style="margin-top: 7px">
+                            <option value="0"
+                            {% if letter.gift.status == 'unselect' %}selected{% endif %}
+                            >Не выбранно</option>
+                            <option value="2"
+                            {% if letter.gift.status == 'delivered' %}selected{% endif %}
+                            >Доставленно</option>
+                            <option value="1"
+                            {% if letter.gift.status == 'selected' %}selected{% endif %}
+                            >Выбрано</option>
+                        </select>
+                    </div>
+                    <a
+                        class="letter-el"
+                        href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"
+                    >
+                        <button class="default-button inner-button">
+                            <span>Подобрать подарок</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'components/footer.html' %}
+
+<script src="{% static 'letters/js/burgerMenu.js' %}"></script>
+<script src="{% static 'letters/js/script.js' %}"></script>
+<script src="{% static 'usertools/js/changeGiftState.js' %}"></script>
+<script>
+document.querySelector('select.letter-ordering').value = '{{ ordering }}'
+
+document.querySelector('select.letter-ordering').addEventListener('change', (event) => {
+  let param = event.target.options[event.target.selectedIndex].value
+  window.location.href = `${url}/usertools/admin/letters/${param}`
+})
+</script>
+
+</body>
+</html>

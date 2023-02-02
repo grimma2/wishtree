@@ -1,0 +1,55 @@
+:root {
+    --ordering-width: 7.7em;
+}
+
+.letter-ordering {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    z-index: 300;
+    width: var(--ordering-width);
+}
+
+.ordering-banner {
+    width: var(--ordering-width);
+    display: flex;
+}
+
+.ordering-banner-img {
+    width: 1.2em;
+}
+
+.ordering-banner-text {
+    margin: 0 0 0 .4em;
+}
+
+/* queryset select */
+.queryset-select {
+    margin-right: 1em;
+    border: grey 1px solid;
+    border-radius: 1em;
+    background-color: grey;
+    padding: .2em;
+    display: flex;
+}
+
+.queryset-option {
+    padding: .2em .5em;
+    border: grey 1px solid;
+    border-radius: 1em;
+    text-align: center;
+}
+
+.queryset-text {
+    width: 100%;
+}
+
+.queryset-selected-option {
+    background-color: yellow;
+}
+
+.queryset-unselected-option * {
+    color: #b79b9b;
+}
+
+/* end queryset select */

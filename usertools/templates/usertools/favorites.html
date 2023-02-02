@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Избранные письма | Ёлка добра</title>
+
+    <link href="{% static 'letters/css/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/hints-swiper.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/favorites.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/empty-object.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="{% static 'letters/css/medias.css' %}">
+    <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
+</head>
+<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+{% include 'components/confirm_message.html' with text='Вы уверены, что хотите забронировать выбраные письма, изменить свой выбор после будет невозможно!' custom_class='select-all-letters-confirm-message' %}
+
+<div style="
+background: url({% static 'letters/images/santa.gif' %});
+background-size: var(--santa-width);
+" id="santa"></div>
+
+<div class="page">
+    {% include 'components/user_header.html' %}
+
+    {% if letters %}
+
+        <div class="favorites-block high-element">
+            <div class="favorites-list">
+                <div class="favorites-controls">
+                    <div class="default-checkbox">
+                        <input type="checkbox" checked class="default-checkbox" id="select-all-checkbox">
+                        <label for="select-all-checkbox">Выбрать все</label>
+                    </div>
+                    <div class="delete-button" id="delete-all-button">
+                        <img src="{% static 'usertools/images/x.png' %}" class="delete-icon">
+                        <span class="delete-button-text">Удалить все</span>
+                    </div>
+                </div>
+
+                <div class="favorites">
+                    {% for letter in letters.all %}
+                        <div class="favorite" data-objectid="{{ letter.pk }}">
+                            <div><img class="favorite-img letter-img" src="{{ letter.photo.url }}"></div>
+                            <div class="favorite-content">
+                                <div class="favorite-content-text">
+                                    <span>Подарок: {{ letter.gift.name }}</span>
+                                    <span class="second-favorite-text">Автор: {{ letter.child.full_name }}</span>
+                                </div>
+                                <div class="favorite-el-controls">
+                                    <div class="default-checkbox">
+                                        <input type="checkbox" checked name="letter-checkbox" id="letter-checkbox{{ letter.pk }}">
+                                        <label for="letter-checkbox{{ letter.pk }}"></label>
+                                    </div>
+                                    <div class="delete-button delete-favorite">
+                                        <img src="{% static 'usertools/images/x.png' %}" class="delete-icon">
+                                        <span class="delete-button-text">Удалить</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="select-all">
+                <div class="select-all-container">
+                    <button class="default-button select-all-button">Забронировать</button>
+                    <p class="warning-text">
+                        После того, как вы выберите подарки, их больше нельзя будет изменить!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'letters/js/confirmMessage.js' %}"></script>
+        <script>
+            setVisitedMessage(
+              'favorite-visited',
+              'Подсказка при первом заходе на страницу'
+            )
+            setConfirmMessage(
+              document.querySelectorAll('button.select-all-button'),
+              'select-all-letters-confirm-message'
+            )
+        </script>
+    {% else %}
+        {% include empty_object_text %}
+    {% endif %}
+</div>
+
+{% include 'components/footer.html' %}
+
+<script src="{% static 'usertools/js/favorites.js' %}"></script>
+</body>
+</html>

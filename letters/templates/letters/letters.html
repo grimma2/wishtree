@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Письма | Ёлка добра</title>
+    <meta name="viewport">
+
+    <link href="{% static 'letters/css/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
+    <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/letters.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/hints-swiper.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/selects.css' %}" rel="stylesheet">
+    <link href="{% static 'letters/css/medias.css' %}" rel="stylesheet">
+</head>
+<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+<p class="popup-message" style="display: none"></p>
+
+<div style="
+background: url({% static 'letters/images/santa.gif' %});
+background-size: var(--santa-width);
+" id="santa"></div>
+
+<div class="page">
+    {% include 'components/user_header.html' %}
+    <div class="ordering-container">
+        <div class="ordering">
+            <div class="ordering-banner">
+                <img class="ordering-banner-img" src="{% static 'letters/images/order.png' %}">
+                <p style="margin-left: .4em">Сортировать</p>
+            </div>
+            <select class="letter-ordering">
+                <option class="ordering-option" value="all">Все</option>
+                <option class="ordering-option" value="0">Не выбраные</option>
+                <option class="ordering-option" value="1">Выбраные</option>
+                <option class="ordering-option" value="2">Доставленые</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="letters high-element">
+        {% for letter in letters %}
+            <div class="letter-container">
+                <div class="letter {% if letter.gift.status == 'unselect' %}orange-card{% else %}blue-card{% endif %}">
+                    <img class="letter-el letter-img" src="{{ letter.photo.url }}" height="100" width="100">
+                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
+                    {% if letter.gift.status == 'unselect' %}
+                        <a onclick="setPopupMessage(event)" data-href="{% url 'usertools:pick_letter' pk=letter.pk %}" class="letter-el add-favorite-link">
+                            <button class="default-button inner-button">
+                                <span>Выбрать</span>
+                            </button>
+                        </a>
+                        <a
+                            class="letter-el"
+                            href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"
+                        >
+                            <button class="default-button inner-button">
+                                <span>Подобрать подарок</span>
+                            </button>
+                        </a>
+                    {% else %}
+                        <p class="letter-el">Выбарно: {{ letter.picked_by.first_name }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'components/footer.html' %}
+
+<script>
+setVisitedMessage(
+  'letters-visited',
+  'Подсказка при первом заходе на страницу'
+)
+document.querySelector('select.letter-ordering').value = '{{ ordering }}'
+
+document.querySelector('select.letter-ordering').addEventListener('change', (event) => {
+  let param = event.target.options[event.target.selectedIndex].value
+  window.location.href = `${url}/letters/letters/${param}`
+})
+</script>
+<script src="{% static 'letters/js/addFavorite.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% load static %}
+<div class="empty-text-container">
+    <div class="empty-objects-text block-container">
+        <img src="{% static 'letters/images/delbox.png' %}">
+        <p>
+            Здесь будут отображаться ваши выбраные письма,
+            <a href="{% url 'usertools:register' %}">Зарегестрируйтесь</a>
+            или <a href="{% url 'usertools:login' %}">Войдите</a>
+            в уже существущий аккаунт
+            для того, чтобы выбрать письмо
+        </p>
+    </div>
+</div>
