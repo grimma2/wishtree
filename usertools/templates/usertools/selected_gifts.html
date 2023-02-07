@@ -18,51 +18,47 @@
     <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
     <link href="{% static 'letters/css/medias.css' %}" rel="stylesheet">
 </head>
-<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+<body>
 
-<div style="
-background: url({% static 'letters/images/santa.gif' %});
-background-size: var(--santa-width);
-" id="santa"></div>
+<div class="page">
+    {% include 'components/user_header.html' %}
 
-    <div class="page">
-        {% include 'components/user_header.html' %}
-
-        {% if letters %}
-        <div class="address-container">
-            <p class="address-text">Текст, который подсказывает, куда нужно принести подарок.</p>
-        </div>
-
-        <div class="letters">
-            {% for letter in letters %}
-                <div class="letter-container">
-                    <div class="letter {% if letter.gift.status == 'selected' %}blue-card{% else %}green-card{% endif %}">
-                        <img class="letter-el letter-img" src="{{ letter.photo.url }}" alt="letter-img">
-                        <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
-                        <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
-                        <p class="letter-el">Выбранно: {{ request.user.first_name }}</p>
-                        <a
-                            class="letter-el"
-                            href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"
-                        >
-                            <button class="default-button inner-button">
-                                <span>Подобрать подарок</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <script>
-        setVisitedMessage(
-          'index-visited',
-          'Подсказка при первом заходе на страницу'
-        )
-        </script>
-        {% else %}
-            {% include empty_object_text %}
-        {% endif %}
+    {% if letters %}
+    <div class="address-container">
+        <p class="address-text">Текст, который подсказывает, куда нужно принести подарок.</p>
     </div>
+
+    <div class="letters">
+        {% for letter in letters %}
+            <div class="letter-container">
+                <div class="letter {% if letter.gift.status == 'selected' %}blue-card{% else %}green-card{% endif %}">
+                    <img class="letter-el letter-img" src="{{ letter.photo.url }}" alt="letter-img">
+                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
+                    <p class="letter-el">Выбранно: {{ request.user.first_name }}</p>
+                    <a
+                        class="letter-el"
+                        href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"
+                    >
+                        <button class="default-button inner-button">
+                            <span>Подобрать подарок</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+    setVisitedMessage(
+      'index-visited',
+      'Подсказка при первом заходе на страницу'
+    )
+    </script>
+    {% else %}
+        {% include empty_object_text %}
+    {% endif %}
+</div>
+
 {% include 'components/footer.html' %}
 </body>
 </html>

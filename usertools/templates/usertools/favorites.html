@@ -20,11 +20,6 @@
 <body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
 {% include 'components/confirm_message.html' with text='Вы уверены, что хотите забронировать выбраные письма, изменить свой выбор после будет невозможно!' custom_class='select-all-letters-confirm-message' %}
 
-<div style="
-background: url({% static 'letters/images/santa.gif' %});
-background-size: var(--santa-width);
-" id="santa"></div>
-
 <div class="page">
     {% include 'components/user_header.html' %}
 

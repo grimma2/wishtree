@@ -17,13 +17,8 @@
     <link rel="stylesheet" href="{% static 'letters/css/medias.css' %}">
     <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
 </head>
-<body style="background-image: url('{% static 'letters/images/sitebg.jpg' %}')">
+<body>
 <p class="popup-message" style="display: none"></p>
-
-<div style="
-background: url({% static 'letters/images/santa.gif' %});
-background-size: var(--santa-width);
-" id="santa"></div>
 
 <div class="page">
     {% include 'components/user_header.html' %}
