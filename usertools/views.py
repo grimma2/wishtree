@@ -232,4 +232,6 @@ class RecommendGoodsView(DetailView):
 def get_recommend_goods(request, pk):
     gift = Gift.objects.get(pk=pk)
     dependency = RecommendGoods(gift=gift.name)
+    print(type(dependency.shops))
+    print(type(dependency.goods))
     return JsonResponse({'goods': dependency.goods, 'shops': dependency.shops})

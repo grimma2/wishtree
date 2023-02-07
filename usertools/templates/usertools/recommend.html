@@ -6,11 +6,13 @@
     <title>Где купить? | Ёлка добра</title>
     <meta name="viewport">
 
+
     <link href="{% static 'letters/css/swiper-bundle.min.css' %}" rel="stylesheet">
     <link href="{% static 'letters/css/hints-swiper.css' %}" rel="stylesheet">
     <link href="{% static 'letters/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'letters/css/header.css' %}" rel="stylesheet">
     <link href="{% static 'letters/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'usertools/css/recommend.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="icon" href="{% static 'letters/images/christmasTree.png' %}">
     <link href="{% static 'letters/css/medias.css' %}" rel="stylesheet">
@@ -37,44 +39,43 @@ let shopsElement = document.getElementById('shops')
 let goodsElement = document.getElementById('goods')
 
 async function getShopsAndGoods () {
-  let response = await fetch(`${url}/get_recommend_goods/{{ gift.pk }}/`)
-  return await response.json()
+  let response = await fetch(`${url}/usertools/get_recommend_goods/{{ gift.pk }}/`)
+  let data = await response.json()
+
+  for (let shop of data.shops) {
+    shopsElement.insertAdjacentHTML(
+      'afterbegin',
+      `
+      <div class="shop">
+          <p class="shop-item">${shop.name}</p>
+          <p class="shop-item">${shop.address}</p>
+      </div>
+      `
+    )
+  }
+  // maybe change display
+  document.querySelector('div.load-container').style.display = 'none'
+  shopsElement.style.display = 'grid'
+
+  for (let product of data.goods) {
+    goodsElement.insertAdjacentHTML(
+      'afterbegin',
+      `
+      <div class="product-container">
+          <a href="${product.link}">
+              <img class="product-item product-img" src="${product.img}">
+              <p class="product-item">${product.name}</p>
+              <p class="product-item">${product.sub_text}</p>
+          </a>
+      </div>
+      `
+    )
+  }
+  // maybe change display
+  goodsElement.style.display = 'grid'
 }
 
-let data = getShopsAndGoods()
-
-for (let shop of data.shops) {
-  shopsElement.insertAdjacentHTML(
-    'afterbegin',
-    `
-    <div class="shop">
-        <p class="shop-item">${shop.name}</p>
-        <p class="shop-item">${shop.address}</p>
-    </div>
-    `
-  )
-}
-// maybe change display
-document.querySelector('div.load-container').style.display = 'none'
-shopsElement.style.display = 'block'
-
-for (let product of data.goods) {
-  goodsElement.insertAdjacentHTML(
-    'afterbegin',
-    `
-    <div class="product-container">
-        <a href="${product.link}">
-            <img class="product-item product-img" src="${product.img}">
-            <p class="product-item">${product.name}</p>
-            <p class="product-item">${product.sub_text}</p>
-        </a>
-    </div>
-    `
-  )
-}
-// maybe change display
-goodsElement.style.display = 'block'
-
+getShopsAndGoods()
 </script>
 </body>
 </html>

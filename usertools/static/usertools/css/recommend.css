@@ -30,20 +30,6 @@ header p {
     height: 100%;
 }
 
-#shops {
-	margin-right: auto;
-	margin-left: auto;
-	width: 95%;
-	display: grid;
-	grid-template-columns: 30% 30% 30%;
-	grid-column-gap: 20px;
-	justify-items: center;
-}
-
-.shop-item {
-	margin-top: 20px;
-}
-
 #empty-result {
 	text-align: center;
 	width: 100%;
@@ -95,17 +81,26 @@ header p {
 	grid-template-columns: 700px;
 	grid-row-gap: 30px;
 	padding: 15px 0;
+	margin-right: auto;
+	margin-left: auto;
+	width: 95%;
+	display: grid;
+	/*grid-template-columns: 30% 30% 30%;*/
+	grid-column-gap: 20px;
+	/*justify-items: center;*/
 }
 
 .shop {
 	border: black 1px solid;
 	border-radius: 15px;
 	width: 100%;
+	background-color: #0ed5d5;
 }
 
 .shop-item {
 	margin-left: 20px;
 	padding-bottom: 10px;
+	margin-top: 20px;
 }
 
 .where-buy-title {
