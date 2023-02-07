@@ -41,8 +41,8 @@ async function getShopsAndGoods () {
       'afterbegin',
       `
       <div class="shop">
-          <p class="shop-item">${shop.name}</p>
-          <p class="shop-item">${shop.address}</p>
+          <p class="shop-item shop-name">${shop.name}</p>
+          <p class="shop-item shop-address">${shop.address}</p>
       </div>
       `
     )
@@ -56,7 +56,7 @@ async function getShopsAndGoods () {
       'afterbegin',
       `
       <div class="product-container">
-          <a href="${product.link}">
+          <a class="product-link" href="${product.link}">
               <img class="product-item product-img" src="${product.img}">
               <p class="product-item">${product.name}</p>
               <p class="product-item">${product.sub_text}</p>

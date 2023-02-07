@@ -36,9 +36,14 @@
                     <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
                     <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
                     {% if letter.gift.status == 'unselect' %}
-                        <button class="default-button letter-el">
-                            <a href="{% url 'usertools:pick_letter' pk=letter.pk %}">Выбрать</a>
-                        </button>
+                        <a
+                            class="letter-el"
+                            href="{% url 'usertools:pick_letter' pk=letter.pk %}"
+                        >
+                            <button class="default-button inner-button">
+                                <span>Выбрать</span>
+                            </button>
+                        </a>
                         <a
                             class="letter-el"
                             href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"

@@ -5,7 +5,7 @@ function showInfoMessage(message) {
 
 function setVisitedMessage (cookieName, messageText) {
   if (!document.cookie.includes(cookieName)) {
-    document.cookie = `${cookieName}=1; expires=Fri, 31 Dec 9999 23:59:59 GMT`
+    document.cookie = `${cookieName}=1; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`
     let message = document.querySelector('div.info-message')
     showInfoMessage(message)
     message.querySelector('span.message-text').textContent = messageText

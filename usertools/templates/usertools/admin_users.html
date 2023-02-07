@@ -19,11 +19,6 @@
 <body>
 {% include 'components/confirm_message.html' with text='Вы уверены, что хотите отчистить выбранные письма для этого пользователя?' custom_class='clean-user-letters-message' %}
 
-<div style="
-background: url({% static 'letters/images/santa.gif' %});
-background-size: var(--santa-width);
-" id="santa"></div>
-
 <div class="page">
     {% include 'components/admin_header.html' %}
 

@@ -1,8 +1,10 @@
 {% load static %}
-<div class="empty-objects-text block-container">
-    <img src="{% static 'letters/images/delbox.png' %}">
-    <p>
-        Вы уже забранировали нужные письма, посмотреть их можно на странице
-        <a href="{% url 'usertools:user_selected' %}">Мои письма</a>
-    </p>
+<div class="empty-text-container">
+    <div class="empty-objects-text block-container">
+        <img src="{% static 'letters/images/delbox.png' %}">
+        <p>
+            Вы уже забранировали нужные письма, посмотреть их можно на странице
+            <a href="{% url 'usertools:user_selected' %}">Мои письма</a>
+        </p>
+    </div>
 </div>

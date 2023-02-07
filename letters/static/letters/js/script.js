@@ -1,17 +1,3 @@
-setInterval(() => {
-  if (Math.floor(Math.random() * 3) === 1) {
-    let santa = document.getElementById('santa')
-
-    if (!santa) return
-
-    santa.classList.add('santa-event')
-    setTimeout(() => {
-      santa.classList.remove('santa-event')
-    }, 5000)
-  }
-}, 30000)
-
-
 const url = `${location.protocol}//${location.host}`
 
 let changeButton = document.querySelectorAll('.search-button')

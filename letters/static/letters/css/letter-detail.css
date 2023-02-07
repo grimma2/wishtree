@@ -9,9 +9,8 @@
 .back-arrow-on-page-container {
     cursor: pointer;
     background-color: white;
-    padding: .5em;
-    height: 3em;
-    width: 3em;
+    height: 2em;
+    width: 2em;
     border: white 1px solid;
     border-radius: 1em;
     display: flex;
