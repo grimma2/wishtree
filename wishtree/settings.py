@@ -110,6 +110,6 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'andrey.chella@mail.ru'
-EMAIL_HOST_PASSWORD = 'yZW4zrFXkpqSgBurb1Aq'
+EMAIL_HOST_PASSWORD = 'yZW4zrFXkpqSgB'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
