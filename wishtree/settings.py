@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import logging
@@ -110,6 +111,6 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'andrey.chella@mail.ru'
-EMAIL_HOST_PASSWORD = 'yZW4zrFXkpqSgB'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
