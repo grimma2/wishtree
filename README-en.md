@@ -28,6 +28,10 @@ Install all dependencies:
 ```
 pip install -r requirements.txt
 ```
+Set the migrations:
+```
+python manage.py migrate
+```
 And finally, start the server:
 ```
 python manage.py runserver
