@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 .idea/
+media
+.env.bat
 # Distribution / packaging
 .Python
 build/
@@ -54,10 +56,6 @@ coverage.xml
 # Translations
 *.mo
 *.pot
-
-usertools/migrations/0*.py
-letters/migrations/0*.py
-media/excel/*
 
 # Django stuff:
 *.log

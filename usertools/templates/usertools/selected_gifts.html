@@ -33,9 +33,9 @@
             <div class="letter-container">
                 <div class="letter {% if letter.gift.status == 'selected' %}blue-card{% else %}green-card{% endif %}">
                     <img class="letter-el letter-img" src="{{ letter.photo.url }}" alt="letter-img">
-                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
-                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
-                    <p class="letter-el">Выбранно: {{ request.user.first_name }}</p>
+                    <p class="letter-el">{{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">{{ letter.gift.name }}</p>
+                    <p class="letter-el">{{ request.user.first_name }}</p>
                     <a
                         class="letter-el"
                         href="{% url 'usertools:recommend_goods' gift_pk=letter.gift.pk %}"

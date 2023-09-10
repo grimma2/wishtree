@@ -39,8 +39,8 @@
                 <div class="letter green-card">
                 {% endif %}
                     <img class="letter-el" src="{{ letter.photo.url }}">
-                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
-                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
+                    <p class="letter-el">{{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">{{ letter.gift.name }}</p>
                     <div class="custom-select letter-el">
                         <select data-objectid="{{ letter.gift.pk }}" name="status-select" style="margin-top: 7px">
                             <option value="0"

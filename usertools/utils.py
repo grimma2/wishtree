@@ -96,7 +96,7 @@ class ConfirmEmailMixin:
 
 def get_rubble_course(currency):
     if currency == 'USD' or currency == 'EUR':
-        return 70.62
+        return 104.72
 
 
 class SubTextParser:

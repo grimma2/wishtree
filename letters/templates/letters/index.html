@@ -51,8 +51,8 @@
             <div class="letter-container">
                 <div class="letter {% if letter.gift.status == 'unselect' %}orange-card{% else %}blue-card{% endif %}">
                     <img class="letter-el letter-img" src="{{ letter.photo.url }}" height="100" width="100">
-                    <p class="letter-el">Автор: {{ letter.child.get_full_name }}</p>
-                    <p class="letter-el">Подарок: {{ letter.gift.name }}</p>
+                    <p class="letter-el">{{ letter.child.get_full_name }}</p>
+                    <p class="letter-el">{{ letter.gift.name }}</p>
                     {% if letter.gift.status == 'unselect' %}
                         <a onclick="setPopupMessage(event)" data-href="{% url 'usertools:pick_letter' pk=letter.pk %}" class="letter-el add-favorite-link">
                             <button class="default-button inner-button">
@@ -68,7 +68,7 @@
                             </button>
                         </a>
                     {% else %}
-                        <p class="letter-el">Выбарно: {{ letter.picked_by.first_name }}</p>
+                        <p class="letter-el">{{ letter.picked_by.first_name }}</p>
                     {% endif %}
                 </div>
             </div>

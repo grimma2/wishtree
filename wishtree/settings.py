@@ -1,19 +1,12 @@
 import os
 from pathlib import Path
 
-import logging
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-logging.basicConfig(level=logging.DEBUG, filename='log.log', filemode='w',
-                    format='%(asctime)s - logger:%(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger('Debug Logger')
-
-
-SECRET_KEY = 'django-insecure-%#r%y5pd0byj)!k9!fe$4sos3ay=k#&@%r*yta84gz9t27-opm'
-
 DEBUG = True
+
+SECRET_KEY = 'ujbtv6*%&(T&GBT&UIYGH&B&YNUh8g)' if DEBUG else os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -110,7 +103,7 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'andrey.chella@mail.ru'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
