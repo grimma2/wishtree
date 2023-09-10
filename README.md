@@ -1,4 +1,4 @@
-<a href="https://github.com/grimma2/wishtree">Русский</a> / <a href="https://github.com/grimma2/wishtree/blob/main/README-en.md">English</a>
+#### <a href="https://github.com/grimma2/wishtree">Русский</a> / <a href="https://github.com/grimma2/wishtree/blob/main/README-en.md">English</a>
 
 ## О проекте
 
