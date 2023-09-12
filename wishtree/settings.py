@@ -56,12 +56,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'wishtree.wsgi.application'
 
 
-DATABASES = {
+DATABASES = (
+{
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+} if DEBUG else
+{
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'wishtree',
+        'USER': 'wtuser',
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+})
+
 
 
 AUTH_PASSWORD_VALIDATORS = [

@@ -7,6 +7,7 @@ __pycache__/
 *.so
 .idea/
 media
+config
 .env.bat
 # Distribution / packaging
 .Python

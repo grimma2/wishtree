@@ -2,7 +2,7 @@
 
 Здратсвуйте, {{ user.get_full_name }}
 Пожалйста, перейдите по ссылке, чтобы завершить регестрацию
-http://{{ domain }}{% url 'usertools:do_confirm_email' uidb64=uid token=token %}
+{{ request.scheme }}://{{ domain }}{% url 'usertools:do_confirm_email' uidb64=uid token=token %}
 Если вы не регестрировались на этом сайте, просто проигнорируйте это сообщение
 
 {% endautoescape %}
