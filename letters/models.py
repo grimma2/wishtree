@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from wishtree.settings.settings import AUTH_USER_MODEL
+from wishtree.settings import AUTH_USER_MODEL
 
 
 class Child(models.Model):

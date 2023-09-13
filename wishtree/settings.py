@@ -101,3 +101,9 @@ EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    from .prod_settings import *

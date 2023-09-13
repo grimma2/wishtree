@@ -4,7 +4,7 @@ import sys
 
 def main():
     # should change 'prod_settings' on 'local_settings' on local server
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wishtree.settings.prod_settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wishtree.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
