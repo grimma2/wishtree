@@ -1,17 +1,15 @@
-import os
 from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = True
-
-SECRET_KEY = 'ujbtv6*%&(T&GBT&UIYGH&B&YNUh8g)' if DEBUG else os.environ.get('SECRET_KEY')
-
-ALLOWED_HOSTS = []
-
 AUTH_USER_MODEL = 'usertools.BaseUser'
 
+DEBUG = True
+
+SECRET_KEY = '*t^&ry&^uyfGy(^iytGVT7I6f&iuyUG6RF7^%$%)'
+
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -55,26 +53,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wishtree.wsgi.application'
 
-
-DATABASES = (
-{
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-} if DEBUG else
-{
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wishtree',
-        'USER': 'wtuser',
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
-})
-
-
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -115,7 +99,5 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False

@@ -14,7 +14,7 @@ from letters.models import Letter, Gift
 from .utils import DbToExcel, ConfirmEmailMixin, RecommendGoods
 from .forms import RegisterForm
 
-from wishtree.settings import BASE_DIR
+from wishtree.settings.settings import BASE_DIR
 
 
 User = get_user_model()

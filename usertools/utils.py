@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 
 from letters.models import Letter
 
-from wishtree.settings import EMAIL_HOST_USER
+from wishtree.settings.prod_settings import EMAIL_HOST_USER
 
 from openpyxl import Workbook
 import requests
