@@ -2,7 +2,7 @@
 
 ## About
 
-Available at the link: ----.ru
+Available at the link: https://quiz-game1.store
 
 The "Tree of Good Deeds" project was created for a competition by a volunteer organization to organize the Tree of Good Deeds in the city. On the website, compassionate individuals can view letters from different children to Ded Moroz (Father Frost) and fulfill their wishes by selecting the letters they like and scheduling a meeting to deliver gifts.
 
